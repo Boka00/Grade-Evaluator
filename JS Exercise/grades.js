@@ -167,3 +167,35 @@ mathTracker(92);
 
 const englishTracker = createTracker("English", 55); // custom passing score = 55 // you can also use default passing score by createTracker("English")
 englishTracker(60);
+
+// Bonus // — The Final Report
+
+function printStudentReport(name, exam, homework, attendance, bonus) {
+  const finalScore = Number(calculateWeightedScore(exam, homework, bonus));
+  const grade = getLetterGrade(finalScore);
+  const retake = isEligibleForRetake(finalScore, attendance) ? "YES" : "No";
+
+  if (!isValidScore(finalScore)) {
+    console.log("Error: invalid final score.");
+    return;
+  }
+
+  console.log(
+    `
+    ====================================
+    Student:     ${name} 
+    ------------------------------------
+
+    Exam:         ${exam} (Weight: 60%)
+    Homework:     ${homework} (Weight: 40%)
+    Bonus:        ${bonus} pts
+    Final Score:  ${finalScore}
+    Grade:        ${grade}
+    Attendance:   ${attendance} %
+    Retake:       ${retake}
+    ====================================`,
+  );
+}
+printStudentReport("Petra Novak", 74, 88, 82, 3);
+printStudentReport("Elena Petrrova", 40, 50, 75, 3);
+printStudentReport("Jon Doe", 110, 88, 82, 3);
